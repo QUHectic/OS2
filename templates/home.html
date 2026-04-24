@@ -1,0 +1,221 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-full max-w-md px-4">
+            {% for msg in messages %}
+                <div class="flex items-center p-4 mb-4 bg-white border-l-8 border-[#72db94] rounded-xl shadow-2xl animate-bounce-short">
+                    <!-- Notification Icon -->
+                    <div class="flex-shrink-0 bg-emerald-100 p-2 rounded-full mr-3">
+                        <svg class="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <!-- Message Text -->
+                    <p class="text-emerald-950 font-bold text-sm">{{ msg }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+
+<!-- Bootstrap Template then heavely edited by us -->
+<div class="relative overflow-hidden bg-white shadow-lg rounded-b-2xl">
+  
+  <!-- Hero Banner Image -->
+  <div class="h-64 md:h-96 w-full overflow-hidden">
+    <img 
+      src="/static/images/HomeHero1.jpg" 
+      alt="Greenfield Local Hub Hero Banner" 
+      class="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+    >
+  </div>
+
+  <!-- Welcome Message Box -->
+  <div class="p-8 text-center border-t-8 border-[#72db94]">
+    <h2 class="text-3xl font-black text-emerald-950 mb-4">
+      Welcome to Greenfield Local Hub
+    </h2>
+    <p class="text-xl text-emerald-900/80 max-w-2xl mx-auto leading-relaxed">
+      Experience <span class="font-bold text-emerald-950">quality products</span> and 
+      <span class="font-bold text-emerald-950">unbeatable prices</span> as you browse our latest collections.
+    </p>
+    
+    <!-- Arrow pointing to most bought products -->
+    <div class="mt-8 flex flex-col items-center gap-2">
+      <span class="text-sm font-bold text-emerald-800 uppercase tracking-widest">Our Most Bought</span>
+      
+      <!-- Bouncing Arrow -->
+      <div class="animate-bounce">
+        <svg xmlns="http://w3.org" class="h-10 w-10 text-[#72db94]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 px-4 py-10 max-w-[1600px] mx-auto">
+  
+  <!-- Product 1: Pizza -->
+  <div class="group bg-white rounded-xl shadow-sm hover:shadow-xl border border-gray-100 overflow-hidden transition-all hover:-translate-y-1 flex flex-col">
+    <div class="relative h-40 overflow-hidden">
+      <img src="/static/images/Spicy Pepperoni Pizza.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Spicy Pepperoni Pizza">
+      <span class="absolute top-2 left-2 bg-[#72db94] text-emerald-950 text-[9px] font-black px-2 py-0.5 rounded-full shadow-sm">#1 MOST BOUGHT</span>
+    </div>
+    <div class="p-4 flex flex-col flex-grow">
+      <h5 class="text-md font-bold text-emerald-950 mb-1">Pepperoni Pizza</h5>
+      <p class="text-xs text-gray-500 mb-4 flex-grow">Double pepperoni with hot honey drizzle</p>
+      <div class="bg-emerald-50/50 p-2 rounded border-l-2 border-[#72db94]">
+        <p class="text-[10px] italic text-emerald-900">"Melts in your mouth on God"</p>
+        <p class="text-[9px] text-emerald-700 mt-0.5 font-bold">— Harold</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product 2: Fries -->
+  <div class="group bg-white rounded-xl shadow-sm hover:shadow-xl border border-gray-100 overflow-hidden transition-all hover:-translate-y-1 flex flex-col">
+    <div class="relative h-40 overflow-hidden">
+      <img src="/static/images/French Fries.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="French Fries">
+      <span class="absolute top-2 left-2 bg-[#72db94] text-emerald-950 text-[9px] font-black px-2 py-0.5 rounded-full shadow-sm">#2 MOST BOUGHT</span>
+    </div>
+    <div class="p-4 flex flex-col flex-grow">
+      <h5 class="text-md font-bold text-emerald-950 mb-1">Crispy Fries</h5>
+      <p class="text-xs text-gray-500 mb-4 flex-grow">Crispy fries prepared with seasoning</p>
+      <div class="bg-emerald-50/50 p-2 rounded border-l-2 border-[#72db94]">
+        <p class="text-[10px] italic text-emerald-900">"Fiya"</p>
+        <p class="text-[9px] text-emerald-700 mt-0.5 font-bold">— Susan</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product 3: Apple Juice -->
+  <div class="group bg-white rounded-xl shadow-sm hover:shadow-xl border border-gray-100 overflow-hidden transition-all hover:-translate-y-1 flex flex-col">
+    <div class="relative h-40 overflow-hidden">
+      <img src="/static/images/Apple Juice.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Apple Juice">
+      <span class="absolute top-2 left-2 bg-[#72db94] text-emerald-950 text-[9px] font-black px-2 py-0.5 rounded-full shadow-sm">#3 MOST BOUGHT</span>
+    </div>
+    <div class="p-4 flex flex-col flex-grow">
+      <h5 class="text-md font-bold text-emerald-950 mb-1">Apple Juice</h5>
+      <p class="text-xs text-gray-500 mb-4 flex-grow">1L Carton of Apple Juice</p>
+      <div class="bg-emerald-50/50 p-2 rounded border-l-2 border-[#72db94]">
+        <p class="text-[10px] italic text-emerald-900">"Best of the best."</p>
+        <p class="text-[9px] text-emerald-700 mt-0.5 font-bold">— Veronica</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product 4: Brownie -->
+  <div class="group bg-white rounded-xl shadow-sm hover:shadow-xl border border-gray-100 overflow-hidden transition-all hover:-translate-y-1 flex flex-col">
+    <div class="relative h-40 overflow-hidden">
+      <img src="/static/images/Chocolate Brownie.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Chocolate Brownie">
+      <span class="absolute top-2 left-2 bg-[#72db94] text-emerald-950 text-[9px] font-black px-2 py-0.5 rounded-full shadow-sm">#4 MOST BOUGHT</span>
+    </div>
+    <div class="p-4 flex flex-col flex-grow">
+      <h5 class="text-md font-bold text-emerald-950 mb-1">Fudge Brownie</h5>
+      <p class="text-xs text-gray-500 mb-4 flex-grow">Warm fudge brownie with ice cream</p>
+      <div class="bg-emerald-50/50 p-2 rounded border-l-2 border-[#72db94]">
+        <p class="text-[10px] italic text-emerald-900">"creme de la creme"</p>
+        <p class="text-[9px] text-emerald-700 mt-0.5 font-bold">— Michael</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Product 5: Water -->
+  <div class="group bg-white rounded-xl shadow-sm hover:shadow-xl border border-gray-100 overflow-hidden transition-all hover:-translate-y-1 flex flex-col">
+    <div class="relative h-40 overflow-hidden">
+      <img src="/static/images/Water.jpg" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" alt="Water">
+      <span class="absolute top-2 left-2 bg-[#72db94] text-emerald-950 text-[9px] font-black px-2 py-0.5 rounded-full shadow-sm">#5 MOST BOUGHT</span>
+    </div>
+    <div class="p-4 flex flex-col flex-grow">
+      <h5 class="text-md font-bold text-emerald-950 mb-1">Spring Water</h5>
+      <p class="text-xs text-gray-500 mb-4 flex-grow">500ml bottled spring water</p>
+      <div class="bg-emerald-50/50 p-2 rounded border-l-2 border-[#72db94]">
+        <p class="text-[10px] italic text-emerald-900">"Never go wrong with water :)"</p>
+        <p class="text-[9px] text-emerald-700 mt-0.5 font-bold">— Justin</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Container to centralise the button -->
+<div class="flex justify-center w-full py-12">
+  <a href="http://127.0.0.1:5000/menu" 
+     class="bg-[#72db94] hover:bg-[#5fc27f] text-emerald-950 text-2xl font-black px-12 py-6 rounded-2xl shadow-xl transition-all transform hover:scale-105 active:scale-95 text-center">
+    Press Here To View Our Whole Menu
+  </a>
+</div>
+
+<div class="flex items-center border-4 border-[#72db94] rounded-2xl overflow-hidden m-4 bg-white shadow-sm">
+  
+  <!-- Image Container -->
+  <div class="flex-none">
+    <img src="/static/images/AboutHome.png" alt="About Greenfield" class="h-64 w-auto object-cover">
+  </div>
+
+  <!-- Text Content & Button -->
+  <div class="p-8 flex flex-col items-start">
+    <h3 class="text-3xl font-black text-emerald-950 mb-3">Our Mission</h3>
+    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+      Greenfield Local Hub was created to bring the freshest local produce and high-quality 
+      goods straight to your door. We believe in supporting our community while providing 
+      unbeatable value.
+    </p>
+
+    <!-- About Us Button -->
+    <a href="{{ url_for('about') }}" 
+       class="inline-block bg-[#72db94] hover:bg-[#5fc27f] text-emerald-950 font-bold py-3 px-8 rounded-xl shadow-md transition-all hover:-translate-y-1 active:scale-95">
+      Learn More About Us
+    </a>
+  </div>
+  
+</div>
+
+<div class="flex items-center border-4 border-[#72db94] rounded-2xl overflow-hidden m-4 bg-white shadow-sm">
+  <!-- Text Content moved to the left -->
+  <div class="p-8 flex flex-col items-end text-right flex-grow">
+    <h3 class="text-3xl font-black text-emerald-950 mb-3">Delivery Power</h3>
+    <p class="text-lg text-gray-700 leading-relaxed">
+      Freshness shouldn't require a trip to the store. Greenfield Local Hub delivers premium local goods straight to your door, ensuring you get unbeatable value without ever leaving the house. We're proud to keep our community moving.
+    </p>
+  </div>
+
+  
+
+  <!-- Image Container moved to the right -->
+  <div class="flex-none">
+    <img src="/static/images/Delivery Icon.png" alt="Delivery Icon" class="h-64 w-auto object-cover">
+  </div>
+</div>
+
+<div class="flex items-center border-4 border-[#72db94] rounded-2xl overflow-hidden m-4 bg-white shadow-sm"> 
+  <!-- Image Container -->
+  <div class="flex-none">
+    <img src="/static/images/LoginRegister Icon.png" alt="Registration/Login Icon" class="h-64 w-auto object-cover">
+  </div>
+
+  <!-- Text Content & Button -->
+  <div class="p-8 flex flex-col items-start">
+    <h3 class="text-3xl font-black text-emerald-950 mb-3">Our Exclusive Membership</h3>
+    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+      Ready to save? Members get more at Greenfield Local Hub. Simply sign in or create your account to unlock a 5% discount across our entire range. Fresh produce, high-quality goods, and unbeatable loyalty rewards—all in one place.
+    </p>
+
+    <!-- Authentication Button -->
+    <a href="{{ url_for('login') }}" 
+       class="inline-block bg-[#72db94] hover:bg-[#5fc27f] text-emerald-950 font-bold py-3 px-8 rounded-xl shadow-md transition-all hover:-translate-y-1 active:scale-95">
+      Login/Register
+    </a>
+  </div>
+
+</div>
+
+
+
+
+    {% endblock %}

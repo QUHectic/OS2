@@ -1,0 +1,81 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Login Page{% endblock %}
+
+{% block content %}
+<div class="min-h-[80vh] flex flex-col justify-center py-12 px-6 lg:px-8">
+    <div class="sm:mx-auto sm:w-full sm:max-w-md">
+        <!-- Header -->
+        <h2 class="text-center text-4xl font-black text-emerald-950 mb-2">Welcome Back</h2>
+        <p class="text-center text-emerald-800/70 mb-8">Access your Greenfield Local Hub account</p>
+
+        <!-- Flash Messages -->
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-full max-w-md px-4">
+            {% for msg in messages %}
+                <div class="flex items-center p-4 mb-4 bg-white border-l-8 border-[#72db94] rounded-xl shadow-2xl animate-bounce-short">
+                    <!-- Notification Icon -->
+                    <div class="flex-shrink-0 bg-emerald-100 p-2 rounded-full mr-3">
+                        <svg class="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <!-- Message Text -->
+                    <p class="text-emerald-950 font-bold text-sm">{{ msg }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+
+        <!-- Login Card -->
+        <div class="bg-white py-10 px-8 shadow-2xl rounded-3xl border border-emerald-50 relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-full h-2 bg-[#72db94]"></div>
+
+            <form action="#" method="post" class="space-y-6">
+                <!-- Email Field -->
+                <div>
+                    <label for="email" class="block text-sm font-bold text-emerald-950 uppercase tracking-widest mb-2">
+                        Email Address
+                    </label>
+                    <input type="email"
+                           name="email"
+                           required
+                           class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#72db94] focus:border-transparent outline-none transition-all"
+                           placeholder="your@email.com">
+                </div>
+
+                <!-- Password Field -->
+                <div>
+                    <label for="password" class="block text-sm font-bold text-emerald-950 uppercase tracking-widest mb-2">
+                        Password
+                    </label>
+                    <input type="password"
+                           name="password"
+                           required
+                           class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-[#72db94] focus:border-transparent outline-none transition-all"
+                           placeholder="••••••••">
+                </div>
+
+                <!-- Submit Button -->
+                <div>
+                    <button type="submit"
+                            class="w-full bg-[#72db94] hover:bg-[#5fc27f] text-emerald-950 font-black py-4 rounded-xl shadow-lg transition-all transform hover:scale-[1.02] active:scale-95 text-lg">
+                        Sign In
+                    </button>
+                </div>
+            </form>
+
+            <!-- Registration Link -->
+            <div class="mt-8 pt-6 border-t border-gray-100 text-center">
+                <p class="text-sm text-gray-500 mb-2">Don't have an account yet(REGISTER TO AUTOMATICALLY JOIN OUR LOYALTY PROGRAM)?</p>
+                <a href="/register" class="text-emerald-700 font-bold hover:text-emerald-500 transition-colors">
+                    Click here to register!
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

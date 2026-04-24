@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-full max-w-md px-4">
+            {% for msg in messages %}
+                <div class="flex items-center p-4 mb-4 bg-white border-l-8 border-[#72db94] rounded-xl shadow-2xl animate-bounce-short">
+                    <!-- Notification Icon -->
+                    <div class="flex-shrink-0 bg-emerald-100 p-2 rounded-full mr-3">
+                        <svg class="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <!-- Message Text -->
+                    <p class="text-emerald-950 font-bold text-sm">{{ msg }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+
+<!-- Bootsrap Table Template-  https://getbootstrap.com/docs/4.6/content/tables/ table-dark Then edited by me to adjust to GLH Needs-->
+<div class="container mt-5">
+    <h2 class="mb-4">Your Order Summary</h2>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Price</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr>
+                <td>{{item.stock_name}}</td>
+                <td>{{"%.2f" % item.stock_price}}</td>
+                <td>
+                    <div><a href="{{url_for('remove_from_basket', sid=item.stock_id)}}" class="btn btn-danger">Remove</a></div>
+                </td>
+            </tr>
+            {% endfor %}           
+        </tbody>
+    </table>
+
+    <div class="mb-4">
+        <a href="{{url_for('checkout', method='collection')}}" class="btn-outline-light">Click for Collection: £0</a>
+        <a href="{{url_for('checkout', method='delivery')}}" class="btn-outline-primary">Click for Delivery: £2.50</a>
+    </div>
+    <div class="card">
+        <div class="justify-content-between"><span>Subtotal: </span><span>£{{"%.2f" % subtotal}}</span></div>
+        <div class="justify-content-between"><span>Discount: </span><span>£{{"%.2f" % discount}}</span></div>
+        <div class="justify-content-between {% if shipping > 0 %}text-warning{% endif %}"><span>Shipping: </span><span>{{"%.2f" % shipping}}</span></div>
+        <div class="justify-content-between"><span>Total: </span><span>£{{"%.2f" % total}}</span></div>
+        <a href="http://127.0.0.1:5000/place_order"><button type="submit" class="btn btn-success">Place Order</button></a>
+        
+    </div>
+</div>
+
+{% endblock %}

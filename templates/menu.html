@@ -1,0 +1,94 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Menu Page{% endblock %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-full max-w-md px-4">
+            {% for msg in messages %}
+                <div class="flex items-center p-4 mb-4 bg-white border-l-8 border-[#72db94] rounded-xl shadow-2xl animate-bounce-short">
+                    <!-- Notification Icon -->
+                    <div class="flex-shrink-0 bg-emerald-100 p-2 rounded-full mr-3">
+                        <svg class="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <!-- Message Text -->
+                    <p class="text-emerald-950 font-bold text-sm">{{ msg }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+
+<!-- Bootsrap Table Template- https://getbootstrap.com/docs/4.6/components/card/ example Then edited by me to adjust to GLH Needs-->
+
+<div class="text-emerald-900 hover:text-emerald-700 px-3 py-2 rounded-md text-lg font-bold transition">
+<a href="http://127.0.0.1:5000/menu" class="badge badge-pill badge-primary">Everything</a>
+<a href="http://127.0.0.1:5000/menu?vegetarian=0" class="badge badge-pill badge-success">Vegetarian Only</a>
+<a href="http://127.0.0.1:5000/menu?allergy=Dairy" class="badge badge-pill badge-info">Dairy Excluded</a>
+<a href="http://127.0.0.1:5000/menu?allergy=Gluten" class="badge badge-pill badge-info">Gluten Excluded</a>
+<a href="http://127.0.0.1:5000/menu?allergy=Peanuts" class="badge badge-pill badge-info">Peanuts Excluded</a>
+<a href="http://127.0.0.1:5000/menu?allergy=Egg" class="badge badge-pill badge-info">Egg Excluded</a>
+<a href="http://127.0.0.1:5000/menu?allergy=Nuts" class="badge badge-pill badge-info">Nuts Excluded</a>
+</div>
+
+<div class="container-fluid px-4 py-5">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 g-4">
+        {% for item in products %}
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                <img src="/static/images/{{item.stock_name}}.jpg"
+                     class="card-img-top"
+                     alt="{{item.stock_description}}"
+                     style="height: 180px; object-fit: cover;">
+
+                <div class="card-body d-flex flex-column">
+                    <div class="mb-2">
+                        {% if item.stock_level == 0 %}
+                        <span class="badge bg-danger">OUT OF STOCK</span>
+                        {% elif item.stock_level <= 5 %}
+                        <span class="badge bg-warning text-dark">LOW STOCK: {{item.stock_level}} LEFT</span>
+                        {% endif %}
+
+                        {% if item.is_vegetarian %}
+                        <span class="badge bg-success">Vegetarian</span>
+                        {% endif %}
+                    </div>
+
+                    <h5 class="card-title">{{item.stock_name}}</h5>
+                    <p class="card-text">{{item.stock_description}}</p>
+
+                    <div class="mt-auto pt-3">
+                        {% if item.stock_level > 0 %}
+                        <a href="{{url_for('add_to_basket', sid=item.stock_id)}}" class="btn btn-primary w-100">
+                            Add to Basket (£{{"%.2f" % item.stock_price}})
+                        </a>
+                        {% else %}
+                        <button disabled class="btn btn-secondary w-100">Unavailable</button>
+                        {% endif %}
+
+                        {% if item.stock_id in session.get("basket", []) %}
+                        <a href="{{url_for('remove_from_basket', sid=item.stock_id)}}" class="btn btn-outline-danger w-100 mt-3">
+                            Remove from Basket
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+<a href="/checkout" class="btn btn-info btn-lg btn-block">Check Out Time!</a>
+    
+</div>
+
+
+
+
+
+
+{% endblock %}

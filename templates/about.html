@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+
+{% block title %}About Page{% endblock %}
+
+{% block content %}
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-full max-w-md px-4">
+            {% for msg in messages %}
+                <div class="flex items-center p-4 mb-4 bg-white border-l-8 border-[#72db94] rounded-xl shadow-2xl animate-bounce-short">
+                    <!-- Notification Icon -->
+                    <div class="flex-shrink-0 bg-emerald-100 p-2 rounded-full mr-3">
+                        <svg class="h-5 w-5 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <!-- Message Text -->
+                    <p class="text-emerald-950 font-bold text-sm">{{ msg }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endwith %}
+
+
+<div class="flex items-center border-4 border-[#72db94] rounded-2xl overflow-hidden m-4 bg-white shadow-sm"> 
+  <!-- Image Container -->
+  <div class="flex-none">
+    <img src="/static/images/Farmer.png" alt="Registration/Login Icon" class="h-64 w-auto object-cover">
+  </div>
+
+  <!-- Text Content & Button -->
+  <div class="p-8 flex flex-col items-start">
+    <h3 class="text-3xl font-black text-emerald-950 mb-3">The Genesis</h3>
+    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+    The story of Greenfield Local Hub began in the fertile soils of a multi-generational family farm. For the founder, the greatest reward of the harvest was never the profit, but the simple act of providing for those nearby. He found his true purpose in the early mornings spent handing over crates of fresh greens to neighbours, driven by a deep-seated belief that a community is only as strong as the food that sustains it.
+However, he soon witnessed a growing barrier between his fields and the local homes he loved to serve. Traditional supply chains were becoming increasingly complex, causing prices to rise while freshness faded in transit. Unwilling to see his life's work separated from his community by layers of corporate middlemen, he decided to take a radical step. By combining his lifelong passion for local agriculture with a modern vision for direct-to-door logistics, he founded Greenfield Local Hub.
+    </p>
+  </div>
+</div>
+
+<div class="flex items-center border-4 border-[#72db94] rounded-2xl overflow-hidden m-4 bg-white shadow-sm"> 
+  
+  <!-- Text Content & Button -->
+  <div class="p-8 flex flex-col items-start flex-grow">
+    <h3 class="text-3xl font-black text-emerald-950 mb-3">Current</h3>
+    <p class="text-lg text-gray-700 leading-relaxed">
+      While the foundations were laid in the soil of a single farm, the true evolution of Greenfield Local Hub began when other like-minded producers saw the impact of this direct-to-door mission. Recognising that the community craved more than just fresh greens, the founder began partnering with local artisans, dairy farmers, and specialist growers who shared his uncompromising standards for quality.
+      <br><br>
+      These producers were the catalysts that elevated GLH from a local delivery service into a comprehensive community marketplace. From the baker who provides hand-crafted loaves at dawn to the small-scale dairy that ensures every bottle of milk is as fresh as the morning dew, these partners brought a new level of variety and excellence to the Hub. By uniting under a single banner, these local heroes transformed Greenfield Local Hub into a powerhouse of regional commerce.
+    </p>
+  </div>
+
+  <!-- Image Container -->
+  <div class="flex-none ml-auto">
+    <img src="/static/images/FoodProduction.png" alt="Food Production" class="h-80 w-auto object-cover">
+  </div>
+
+</div>
+
+
+<div class="flex items-center border-4 border-[#72db94] rounded-2xl overflow-hidden m-4 bg-white shadow-sm"> 
+  <!-- Image Container -->
+  <div class="flex-none">
+    <img src="/static/images/sunrise.png" alt="Registration/Login Icon" class="h-64 w-auto object-cover">
+  </div>
+
+  <!-- Text Content & Button -->
+  <div class="p-8 flex flex-col items-start">
+    <h3 class="text-3xl font-black text-emerald-950 mb-3">Aspirations</h3>
+    <p class="text-lg text-gray-700 leading-relaxed mb-6">
+    Today, the launch of this web application marks the beginning of a new chapter for Greenfield Local Hub. What started in the fields is now moving into the digital age, creating a seamless bridge between the heritage of the farm and the convenience of modern life. This platform is more than just a store; it is a digital ecosystem designed to make supporting local producers easier and more rewarding than ever before.
+Looking toward the horizon, GLH envisions a future where technology and tradition coexist to strengthen our community even further. While we continue to expand our reach and refine our service, our mission remains fixed: to use this new digital frontier to ensure that the finest local goods are always just a click away. As we grow, we remain committed to the soil that raised us, using this innovation to protect the future of local farming for generations to come.
+    </p>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,151 @@
+﻿
+<html lang="en">
+<head>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    {% block title %}{% endblock %}
+    
+</head>
+
+<body>
+ 
+<header class="relative flex items-center bg-[#72db94] shadow-md overflow-hidden h-20">
+  
+  <div class="h-full z-10">
+    <img src="/static/images/logo.jpg" alt="Websites main logo" class="h-full w-auto object-cover">
+  </div>
+
+  <!-- Title -->
+  <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+    <h1 class="text-3xl font-black text-emerald-950 pointer-events-auto tracking-tight">
+      Greenfield Local Hub
+    </h1>
+  </div>
+
+  <!-- Spacer to keep the title perfectly centered -->
+  <div class="ml-auto w-24"></div>
+</header>
+
+    <nav class="bg-[#72db94] shadow-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-28">
+            
+            <!-- Left Side: Large Logo & Primary Nav -->
+            <div class="flex items-center">
+                <div class="flex-shrink-0 flex items-center mr-10">
+                    <a href="/home" class="transform transition duration-200 hover:scale-105">
+                        <img class="h-24 w-auto drop-shadow-sm" src="{{ url_for('static', filename='images/logo.jpg') }}" alt="Websites main logo">
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="/home" class="text-emerald-900 hover:text-emerald-700 px-3 py-2 rounded-md text-lg font-bold transition">Home</a>
+                    <a href="/menu" class="text-emerald-900 hover:text-emerald-700 px-3 py-2 rounded-md text-lg font-medium transition">Menu</a>
+                    <a href="/about" class="text-emerald-900 hover:text-emerald-700 px-3 py-2 rounded-md text-lg font-medium transition">About Us</a>
+                    <a href="/contact" class="text-emerald-900 hover:text-emerald-700 px-3 py-2 rounded-md text-lg font-medium transition">Contact</a>
+                    
+                    <!-- Algorithm making sure only logged in admin have access the the navbar-admin link -->
+                    {% if session.get('user_type') == "admin" %}
+                    <span class="h-8 w-px bg-emerald-900/20 mx-2"></span>
+                    <a href="/admin" class="bg-emerald-900 text-white px-6 py-2 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-black transition shadow-lg">Admin</a>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- Algorithm making either logout not visibile when a user is not legged in vise-versa -->
+            <div class="hidden md:flex items-center space-x-6">
+                {% if not session.get('user_id') %}
+                <a href="/login" class="text-emerald-900 border-2 border-emerald-900 hover:bg-emerald-900 hover:text-white px-6 py-2 rounded-xl text-md font-bold transition-all">
+                    Sign In
+                </a>
+                {% else %}
+                <a href="/logout" class="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-xl text-md font-bold transition shadow-md">
+                    Logout
+                </a>
+                {% endif %}
+            </div>
+
+            <!-- Mobile Toggle -->
+            <div class="flex items-center md:hidden">
+                <button type="button" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')" class="p-2 rounded-md text-emerald-900 hover:bg-white/20">
+                    <svg class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="hidden md:hidden bg-[#65c784] border-t border-emerald-900/10" id="mobile-menu">
+        <div class="px-4 pt-4 pb-6 space-y-2">
+            <a href="/home" class="block px-3 py-2 rounded-md text-xl font-bold text-emerald-900">Home</a>
+            <a href="/menu" class="block px-3 py-2 rounded-md text-xl font-bold text-emerald-900">Menu</a>
+            <a href="/about" class="block px-3 py-2 rounded-md text-xl font-medium text-emerald-900">About Us</a>
+            {% if session.get('user_type') == "admin" %}
+            <a href="/admin" class="block px-3 py-3 rounded-md text-xl font-bold text-white bg-emerald-900 text-center">Admin Panel</a>
+            {% endif %}
+            <div class="pt-4 border-t border-emerald-900/10">
+                {% if not session.get('user_id') %}
+                <a href="/login" class="block px-3 py-4 text-center text-xl font-bold text-emerald-900 bg-white/30 rounded-xl">Login / Register</a>
+                {% else %}
+                <a href="/logout" class="block px-3 py-2 text-xl font-medium text-red-800">Logout</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+
+    {% block content %}
+    {% endblock %}
+
+    <footer class="bg-emerald-950 text-emerald-50/80 pt-16 pb-8 mt-20">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+    
+    <!-- Brand Section -->
+    <div class="space-y-4">
+      <h4 class="text-[#72db94] text-xl font-black tracking-tight">GREENFIELD HUB</h4>
+      <p class="text-sm leading-relaxed max-w-xs mx-auto md:mx-0">
+        Providing our community with the freshest local produce and high-quality goods, delivered straight to your door.
+      </p>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h4 class="text-white font-bold mb-6">Explore</h4>
+      <ul class="space-y-3 text-sm">
+        <li><a href="/menu" class="hover:text-[#72db94] transition-colors">View Menu</a></li>
+        <li><a href="/about" class="hover:text-[#72db94] transition-colors">Our Story</a></li>
+      </ul>
+    </div>
+
+    <!-- Legal & Support -->
+    <div>
+      <h4 class="text-white font-bold mb-6">Support</h4>
+      <ul class="space-y-3 text-sm">
+        <li><a href="#" class="hover:text-[#72db94] transition-colors">Privacy Policy</a></li>
+        <li><a href="#" class="hover:text-[#72db94] transition-colors">Terms of Service</a></li>
+        <li><a href="/contact" class="hover:text-[#72db94] transition-colors">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="max-w-7xl mx-auto px-6 mt-16 pt-8 border-t border-emerald-900 flex flex-col md:flex-row justify-between items-center gap-4 text-xs tracking-widest">
+    <p>© 2026 GREENFIELD LOCAL HUB. ALL RIGHTS RESERVED.</p>
+  </div>
+</footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+</body>
+</html>
